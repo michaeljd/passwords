@@ -1,0 +1,23 @@
+<h1>Hello!</h1>
+
+<% unless user_signed_in? -%>
+    <p><%= link_to 'Sign up as User', new_user_registration_path %></p>
+    <p><%= link_to 'Sign in as User', new_user_session_path %></p>
+<% end -%>
+
+<% if user_signed_in? -%>
+    <p>Currently signed in as '<%= current_user.email %>'</p>
+    <p>
+    <%= link_to 'Edit User', edit_user_registration_path %> |
+    <%= link_to 'Sign Out', destroy_user_session_path, :method=>:delete %>
+    </p>
+    <p><%= link_to 'Groups', groups_path %> |
+    <%= link_to 'New Group', new_group_path %></p>
+    <p><%= link_to 'Passwords', passwords_path %> |
+    <%= link_to 'New Password', new_password_path %></p>
+    <ul>
+    <% current_user.groups.find_all_by_group_id(nil).sort_by { |obj| obj.name }.each do |g| %>
+      <li><%= render :partial => "group", :locals => { :group => g } %></li>
+    <% end %>
+    </ul>
+<% end -%>

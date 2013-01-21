@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @password_hash.user %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @password_hash.password %>
+</p>
+
+<p>
+  <b>Hash:</b>
+  <%= @password_hash.public_hash %>
+</p>
+
+
+<%= link_to 'Edit', edit_password_hash_path(@password_hash) %> |
+<%= link_to 'Back', root_path %>

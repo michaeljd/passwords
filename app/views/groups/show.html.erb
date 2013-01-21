@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+<p>
+  <b>Notes:</b>
+  <pre><%= @group.notes %></pre>
+</p>
+<p>
+  <b>Users:</b>
+  <% @group.users.each do |u| %>
+  <%= u.email %>
+  <% end %>
+</p>
+<p>
+<b>Passwords:</b>
+    <ul>
+        <% @group.passwords.each do |p| %>
+            <li>
+            <%= link_to p.user, p %> <%= p.server %>
+            </li>
+  <% end %>
+  </ul>
+<%= link_to 'New Password', new_password_path %>
+  </p>
+<b>Groups:</b>
+    <ul>
+        <% @group.groups.each do |g| %>
+            <li>
+            <%= link_to g.name, g %>
+            </li>
+  <% end %>
+  </ul>
+  </p>
+  <% unless @group.group.nil? %>
+<p>
+  <b>Parent Group:</b>
+  <%= link_to @group.group.name, @group.group %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', root_path %>

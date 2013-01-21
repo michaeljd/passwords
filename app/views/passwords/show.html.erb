@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @password.user %>
+</p>
+
+<p>
+  <b>Server:</b>
+  <%= @password.server %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <pre><%= @password.notes %></pre>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @password_hash.decrypt user_session[:private_key]  %>
+</p>
+
+<p>
+  <b>Groups:</b>
+  <% @password.groups.each do |g|  %>
+  <%= link_to g.name, g %>
+  <% end  %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_password_path(@password) %> |
+<%= link_to 'Destroy', @password, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', root_path %>

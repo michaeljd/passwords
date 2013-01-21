@@ -1,0 +1,27 @@
+<h1>Listing password_hashes</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Password</th>
+    <th>Hash</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @password_hashes.each do |password_hash| %>
+  <tr>
+    <td><%= password_hash.user %></td>
+    <td><%= password_hash.password %></td>
+    <td><%= password_hash.hash %></td>
+    <td><%= link_to 'Show', password_hash %></td>
+    <td><%= link_to 'Edit', edit_password_hash_path(password_hash) %></td>
+    <td><%= link_to 'Destroy', password_hash, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Password hash', new_password_hash_path %>

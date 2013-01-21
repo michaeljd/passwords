@@ -1,0 +1,2 @@
+module PasswordHashesHelper
+end

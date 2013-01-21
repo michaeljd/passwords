@@ -1,0 +1,29 @@
+<%= form_for(@password_hash) do |f| %>
+  <% if @password_hash.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@password_hash.errors.count, "error") %> prohibited this password_hash from being saved:</h2>
+
+      <ul>
+      <% @password_hash.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :hash %><br />
+    <%= f.text_field :hash %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

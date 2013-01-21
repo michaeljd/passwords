@@ -1,0 +1,29 @@
+<h2><%= link_to group.name, group %></h2>
+<% if group.passwords.any? %>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Server</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% group.passwords.sort_by {|obj| obj.server }.sort_by {|obj| obj.user }.each do |password| %>
+  <tr>
+    <td><%= password.user %></td>
+    <td><%= password.server %></td>
+    <td><%= password.notes %></td>
+    <td><%= link_to 'Show', password %></td>
+  </tr>
+<% end %>
+</table>
+<% end %>
+<ul>
+<% group.groups.sort_by { |obj| obj.name }.each do |g| %>
+  <% if current_user.groups.find_by_id g.id %>
+  <li><%= render :partial => "group", :locals => { :group => g } %></li>
+  <% end %>
+<% end %>
+</ul>
